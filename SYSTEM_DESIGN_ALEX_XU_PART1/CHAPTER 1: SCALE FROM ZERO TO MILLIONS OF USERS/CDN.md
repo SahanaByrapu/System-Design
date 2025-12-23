@@ -6,10 +6,10 @@
 when users visit a website, a CDN server closest to the user will deliver static content.
 For eg: If CDN servers are in San Francisco, the users in Los Angeles will get content faster when compared to the users in Europe.
 
-![alt text](CDNworflow.png)
+![alt text](images/CDNworflow.png)
 
 
-![alt text](CDNworkflow2.png)
+![alt text](images/CDNworkflow2.png)
 
 **CDN Workflow:**
 1. User A tries to get image.png using image URL.
@@ -28,6 +28,19 @@ URL's domain is provided by CDN provider, Below are the two sample image URLs lo
 * Cost: CDNs are run by third party providers, and you are charged for data transfers in and out of the CDN. Caching infrequently used assest provides no longer benefits, consider moving them out of CDN network.
   
 * Appropriate Cache Expiry: For time-sensitive content, setting time expiry is important.
-                            The cache expiry time should neither be long nor too short. 
-* CDN fallback: 
-* Invalid
+                            The cache expiry time should neither be long nor too short, the data might be too old or frequent re-loading of content from servers to CDN.
+* CDN fallback: Consider how your website copes with CDN failure.
+                Temporary CDN, Clients should be able to detect the problem and request resources from the origin.
+
+* Invalidating files:  You can remove file from CDN before it expires by performing one of the following operations
+                       1.Invalidate the CDN object using APIs provided by CDN vendors
+                       2.Use object versioning to serve different version of the object.
+                       3.To version an object, you can add a parameter to the URL, such as version number.
+
+**Workflow after adding CDN and Cache**
+
+![alt text](images/CDNworkflow3.png)
+
+
+* Static content (JS,CSS, images etc., ) are no longer served by web servers. They are fetched from the CDN for better performance.
+* The database load is lightened by caching data.

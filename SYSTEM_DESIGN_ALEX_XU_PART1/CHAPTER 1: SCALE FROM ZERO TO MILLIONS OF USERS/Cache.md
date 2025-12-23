@@ -23,7 +23,7 @@
     * **Single Point Of Failure (SPOF):** is a part of system, if it fails, will stop entire system for working. Multiple cache servers across different data centers are important to avoid SPOF.
     * Another recommended approach is to overprovision the required memory by certain percentages, this provided a buffer as the memory usage increases.
  
-![alt text](cacheSPOF.png)
+![alt text](images/cacheSPOF.png)
 
 **5: Eviction Policy:**
     * Once the cache is full, any requests to add items in the cache might cause existing items to be removed. This is called Cache eviction.

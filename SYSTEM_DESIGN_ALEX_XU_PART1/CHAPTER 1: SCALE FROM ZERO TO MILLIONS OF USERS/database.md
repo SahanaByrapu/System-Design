@@ -1,6 +1,6 @@
 
 **Database:**
-![alt text](Database.png)
+![alt text](images/Database.png)
 
  |  **Relational/SQL**               |       **Non-Relational/NOSQL**        |
  | --------------------           | ------------------------------    |
