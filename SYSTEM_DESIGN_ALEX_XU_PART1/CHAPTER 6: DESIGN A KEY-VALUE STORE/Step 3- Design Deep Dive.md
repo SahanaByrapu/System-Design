@@ -260,7 +260,7 @@ If the data is not in memory, it will be retreived from the disk instead. We nee
 4. SSTables return the result of the data set.
 5. The result of the data set is returned to the client.
 
-
+![alt text](images/summary.png)
 
 
 
