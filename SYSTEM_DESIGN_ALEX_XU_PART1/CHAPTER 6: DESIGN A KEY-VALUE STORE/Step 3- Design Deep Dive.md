@@ -166,15 +166,99 @@ After failures have been detected through the gossip protocol, the system needs 
 
 **hinted handoff:**  If a server is unavailable due to network or server failures, another server will process requests temporarily. When the down server is up, the changes are pushed back to achieve data consistency. 
 
-
 ![alt text](images/hintedhandoff.png)
 
 In the above figure, as the server s2 is offline, the server s3 handles the operations and pushes back the data to s2 when it recovers.
 
-** 
-**Anti-entropy:** 
+**handling permanent failures**
+
+**Anti-entropy protocol:** compares each piece of data on replicas and updating each replica to the newest version.  
+**Merkle tree** is used for incosistency detection and minimizing the amount of data transferred.
+
+**What is Merkle tree?** 
+non-leaf node is labeled with the hash of the labels or values (in case of leaves) of its child nodes. 
+Hash trees allow efficient and secure verification of the contents of large data structures.
+
+Assuming key space is from 1 to 12, the following steps how to build a merkle tree. 
+Highlighted boxes indicate inconsistency.
+
+**Step 1:** 
+Divide key space into buckets ( 4 in our example). 
+A bucket is used as the root level node to maintain a limited depth of the tree.
+
+![alt text](images/Keyspace.png)
+
+**Step 2:** 
+Once the buckets are created, hash each key in a bucket using a uniform hashing method.
+
+![alt text](images/HashingEachKey.png)
+
+**Step 3:**
+Create a single hash node per bucket.
+![alt text](images/HashNodeperbucket.png)
+
+**Step 4:**
+Build the tree upwards till root by calculating hashes of children.
+![alt text](images/BuildTreeUpwards.png).
+
+To compare two Merkle trees, start by comparing the root hashes. 
+If root hashes match, both servers have the same data. If root hashes disagree, then the left child hashes are compared followed by right child hashes. You can traverse the tree to find which buckets are not synchronzed and synchronize those buckets only. 
+
+Using Merkle trees, the amount of data needed to be synchronized is proportional to the differences between the two replicas and not the amount of data they contain. In real-world systems, the bucket size is quite big. For instance, a possible configuration per one billion keys, so each bucket only contains 1000 keys.
+
+**Handling data center outrage**
+
+Data center outrage could happen due to power outrage, network ourage, natural disaster, etc.,
+TO build a system capable of handling data center outrage, it is important to replicate data across multiple data centers.
+Even if a data center is completely offline, users can still access data through the other data centers.
 
 
+**System architecture:**
+
+* Clients communicate with the key-value store through simple APIs: get(key) and put(key,value).
+* A coordinator is a node that acts as proxy between the client and key-value store.
+* Nodes are distributed on a ring using consistent hashing.
+* The system is completely decentralized so adding and moving nodes can be automatic.
+* Data is replicated at multiple nodes.
+* There is no single point of failure as every node has the same set of responsibilities.
+  
+![alt text](images/Systemarchitecture.png)
+
+
+
+The decentralized version is depicted in the below figure.
+
+
+![alt text](images/decentralised.png)
+
+**Write path**
+
+proposed designs for write/read paths are primary based on the architecture of Cassandra.
+
+In the below figure, 
+1. The write request is persisted on a commit log file.
+2. Data is saved in the memory cache.
+3. When the memory cache is full or reached a predefined threshold, data is flushed to SSTable on disk.
+   Note : A sorted-string table is a sorted list of <key,value> pairs.
+
+![alt text](images/Writepath.png)
+
+
+**Read path**
+
+After read request is directed to a specific node, it first checks if the data is in the memory cache. If so, the data is returned to the client as shown in figure.
+
+![alt text](images/Readpath.png)
+
+If the data is not in memory, it will be retreived from the disk instead. We need an efficient way to find out which SSTable contains the key. Bloom filter is commonly used to solve this problem.
+
+![alt text](images/Readpath2.png)
+
+1. The system first checks if the data is in memory. If not, go to step 2.
+2. If the data is not in memory, the system checks the bloom filter.
+3. The bloom filter is used to figure out which SSTables might contain the key.
+4. SSTables return the result of the data set.
+5. The result of the data set is returned to the client.
 
 
 
