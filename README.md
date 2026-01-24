@@ -1,9 +1,9 @@
 ### LOW LEVEL DESIGN (LLD)
 
-[Parking Lot](strategy-pattern/parking-lot)
+
 | Pattern | Problem                      |
 |------------- |-----------------------------|
-|Strategy Pattern | [S.O.L.I.D Principles]  [View] (./strategy/SOLID) |
+|Strategy Pattern   |[S.O.L.I.D Principles](strategy/SOLID)
 | Observer Pattern | Design Notify-Me Button Functionality |
 | Decorator Pattern | Design  Pizza Billing System |
 | Factory Pattern | Design  Parking Lot |
