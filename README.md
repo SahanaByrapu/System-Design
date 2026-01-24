@@ -3,7 +3,7 @@
 [Parking Lot](strategy-pattern/parking-lot)
 | Pattern | Problem                      |
 |------------- |-----------------------------|
-|Strategy Pattern | [S.O.L.I.D Principles] [View](Low Level Design(LLD)/strategy/S.O.L.I.D) |
+|Strategy Pattern | [S.O.L.I.D Principles]  [View] (./strategy/SOLID) |
 | Observer Pattern | Design Notify-Me Button Functionality |
 | Decorator Pattern | Design  Pizza Billing System |
 | Factory Pattern | Design  Parking Lot |
