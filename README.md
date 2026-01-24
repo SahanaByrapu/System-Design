@@ -1,8 +1,8 @@
-#### LOW LEVEL DESIGN (LLD)
+### LOW LEVEL DESIGN (LLD)
 
 
 | Pattern | Problem                      |
-------------------------------------------
+|------------- |-----------------------------|
 |Strategy Pattern | S.O.L.I.D Principles |
 | Observer Pattern | Design Notify-Me Button Functionality |
 | Decorator Pattern | Design  Pizza Billing System |
@@ -46,10 +46,10 @@
 
 
 
-#### HIGH LEVEL DESIGN (HLD)
+### HIGH LEVEL DESIGN (HLD)
 
-**Theory**
------------------------------
+| **Theory** |
+|-----------------------------|
 |  Learn About Network Protocols (TCP, Websocket, HTTP etc.)|       
 |  Client-Server Vs Peer 2 Peer Architecture|
 |  C.A.P Theorem|
@@ -82,8 +82,8 @@
 |  Indexing etc.|
 
 
-**Problems**
------------------------------
+| Problems |
+|-----------------------------|
 | Design Notification System|
 | Design Pastebin|
 | Design Twitter|
