@@ -3,7 +3,7 @@
 
 | Pattern | Problem                      |
 |------------- |-----------------------------|
-|Strategy Pattern | [S.O.L.I.D Principles](LLD/strategy/SOLID.md)|
+|Strategy Pattern   |[S.O.L.I.D Principles](LLD/strategy/SOLID.md)
 | Observer Pattern | Design Notify-Me Button Functionality |
 | Decorator Pattern | Design  Pizza Billing System |
 | Factory Pattern | Design  Parking Lot |
