@@ -3,7 +3,7 @@
 
 | Pattern | Problem                      |
 |------------- |-----------------------------|
-|Strategy Pattern   |[S.O.L.I.D Principles](LLD/strategy/SOLID.md)
+|Strategy Pattern   |[S.O.L.I.D Principles](LLD/SOLID)
 | Observer Pattern | Design Notify-Me Button Functionality |
 | Decorator Pattern | Design  Pizza Billing System |
 | Factory Pattern | Design  Parking Lot |
@@ -94,4 +94,42 @@
 | Design Web Crawler|
 | Design Facebook News Feed / Newsfeed System |
 | Design Ticket Master|
-| Design NearByFriends or Yelp| 
+| Design NearByFriends or Yelp|
+
+# Proxy Design Pattern
+
+## Definition
+The Proxy Design Pattern provides a surrogate or placeholder for another object to control access to it. This can be useful for various reasons, such as lazy initialization, access control, logging, or monitoring.
+
+## Types of Proxies
+1. **Virtual Proxy**: Delays the creation of a resource until it is needed.
+2. **Protection Proxy**: Controls access to the original object based on permissions.
+3. **Remote Proxy**: Represents an object that is in a different address space.
+
+## Example
+```python
+class RealSubject:
+    def request(self):
+        return "RealSubject: Handling request."
+
+class Proxy:
+    def __init__(self, real_subject):
+        self._real_subject = real_subject
+
+    def request(self):
+        # Additional functionality can be added here
+        return self._real_subject.request()
+
+# Client code
+real_subject = RealSubject()
+proxy = Proxy(real_subject)
+print(proxy.request())  # Output: RealSubject: Handling request.
+```
+
+## Use Cases
+- **Lazy Loading**: Load resources only when necessary.
+- **Access Control**: Restrict access to certain functionalities.
+- **Logging**: Monitor access to the real subject.
+
+## Conclusion
+The Proxy Design Pattern is a powerful tool for controlling access to objects and can enhance performance and security in software design.
