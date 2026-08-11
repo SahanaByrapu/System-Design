@@ -1,5 +1,7 @@
 ### LOW LEVEL DESIGN (LLD)
 
+""" https://refactoring.guru/design-patterns/python """
+
 
 | Pattern | Problem                      |
 |------------- |-----------------------------|
